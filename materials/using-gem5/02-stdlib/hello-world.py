@@ -5,4 +5,19 @@ from gem5.components.processors.simple_processor import SimpleProcessor
 from gem5.components.processors.cpu_types import CPUTypes
 from gem5.resources.resource import Resource
 from gem5.simulate.simulator import Simulator
+cache_hierarchy = NoCache()
+memory = SingleChannelDDR3_1600("1GiB")
+processor = SimpeProcessor(cpu_type=CPUTypes_ATOMIC, num_cores=1)
 
+board = SimpleBoard(
+    clk_freq="3GHz",
+    memory=memory,
+    cache_hierarchy=cache_hierarchy,
+  }
+  
+  binary = Resource("x86-hello64-static")
+  board.set_se_binary_workload(binary)
+  
+  simulator = Simulator(board=board)
+  simulator.run()
+  
